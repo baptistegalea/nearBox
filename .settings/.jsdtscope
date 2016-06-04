@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="cordova-js-src/android/|cordova-js-src/plugin/android/|js/|cordova-js-src/" kind="src" path="platforms/android/assets/www"/>
+	<classpathentry excluding="android/|plugin/android/" kind="src" path="platforms/android/assets/www/cordova-js-src"/>
+	<classpathentry kind="src" path="platforms/android/assets/www/cordova-js-src/android"/>
+	<classpathentry kind="src" path="platforms/android/assets/www/cordova-js-src/plugin/android"/>
+	<classpathentry kind="src" path="platforms/android/assets/www/js"/>
+	<classpathentry excluding="cordova-js-src/android/|js/|cordova-js-src/plugin/android/|cordova-js-src/" kind="src" path="platforms/android/build/intermediates/assets/debug/www"/>
+	<classpathentry excluding="android/|plugin/android/" kind="src" path="platforms/android/build/intermediates/assets/debug/www/cordova-js-src"/>
+	<classpathentry kind="src" path="platforms/android/build/intermediates/assets/debug/www/cordova-js-src/android"/>
+	<classpathentry kind="src" path="platforms/android/build/intermediates/assets/debug/www/cordova-js-src/plugin/android"/>
+	<classpathentry kind="src" path="platforms/android/build/intermediates/assets/debug/www/js"/>
+	<classpathentry excluding="node_modules/path-is-absolute/|node_modules/os-homedir/|node_modules/lodash/chain/|node_modules/cordova-common/src/|node_modules/base64-js/lib/|node_modules/nopt/lib/|node_modules/ansi/lib/|node_modules/concat-map/|node_modules/lodash/|node_modules/lodash/number/|node_modules/unorm/lib/|node_modules/nopt/bin/|node_modules/ansi/examples/clear/|node_modules/glob/|node_modules/lodash/collection/|node_modules/cordova-registry-mapper/tests/|node_modules/lodash/math/|node_modules/properties-parser/test/|node_modules/bplist-parser/|node_modules/cordova-common/src/ConfigParser/|node_modules/base64-js/bench/|node_modules/bplist-parser/test/|node_modules/abbrev/|node_modules/osenv/test/|node_modules/brace-expansion/|node_modules/lodash/utility/|node_modules/sax/lib/|node_modules/big-integer/|node_modules/wrappy/|node_modules/ansi/examples/|node_modules/cordova-common/src/ConfigChanges/|node_modules/sax/examples/|node_modules/xmlbuilder/lib/|node_modules/shelljs/|node_modules/lodash/string/|node_modules/plist/dist/|node_modules/underscore/|node_modules/lodash/object/|node_modules/minimatch/|node_modules/q/|node_modules/wrappy/test/|lib/|node_modules/lodash/function/|node_modules/lodash/lang/|node_modules/concat-map/test/|node_modules/elementtree/lib/|node_modules/inflight/|node_modules/util-deprecate/|node_modules/ansi/examples/beep/|node_modules/ansi/examples/progress/|node_modules/os-tmpdir/|node_modules/concat-map/example/|node_modules/lodash/internal/|node_modules/cordova-common/src/PluginInfo/|node_modules/shelljs/src/|node_modules/cordova-common/|node_modules/lodash/date/|node_modules/base64-js/test/|node_modules/nopt/examples/|node_modules/cordova-registry-mapper/|node_modules/lodash/array/|node_modules/xmldom/|node_modules/elementtree/lib/parsers/|node_modules/properties-parser/|node_modules/sax/test/|node_modules/shelljs/scripts/|node_modules/cordova-common/src/CordovaError/|node_modules/nopt/test/|node_modules/balanced-match/test/|node_modules/once/|node_modules/semver/|node_modules/osenv/|node_modules/plist/lib/|node_modules/elementtree/tests/|lib/builders/|node_modules/inherits/|node_modules/semver/test/|node_modules/cordova-common/src/util/|node_modules/balanced-match/" kind="src" path="platforms/android/cordova"/>
+	<classpathentry excluding="builders/" kind="src" path="platforms/android/cordova/lib"/>
+	<classpathentry kind="src" path="platforms/android/cordova/lib/builders"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/abbrev"/>
+	<classpathentry excluding="clear/|beep/|progress/" kind="src" path="platforms/android/cordova/node_modules/ansi/examples"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/ansi/examples/beep"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/ansi/examples/clear"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/ansi/examples/progress"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/ansi/lib"/>
+	<classpathentry excluding="test/" kind="src" path="platforms/android/cordova/node_modules/balanced-match"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/balanced-match/test"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/base64-js/bench"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/base64-js/lib"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/base64-js/test"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/big-integer"/>
+	<classpathentry excluding="test/" kind="src" path="platforms/android/cordova/node_modules/bplist-parser"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/bplist-parser/test"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/brace-expansion"/>
+	<classpathentry excluding="test/|example/" kind="src" path="platforms/android/cordova/node_modules/concat-map"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/concat-map/example"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/concat-map/test"/>
+	<classpathentry excluding="src/|src/ConfigParser/|src/ConfigChanges/|src/PluginInfo/|src/CordovaError/|src/util/" kind="src" path="platforms/android/cordova/node_modules/cordova-common"/>
+	<classpathentry excluding="ConfigParser/|ConfigChanges/|PluginInfo/|CordovaError/|util/" kind="src" path="platforms/android/cordova/node_modules/cordova-common/src"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/cordova-common/src/ConfigChanges"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/cordova-common/src/ConfigParser"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/cordova-common/src/CordovaError"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/cordova-common/src/PluginInfo"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/cordova-common/src/util"/>
+	<classpathentry excluding="tests/" kind="src" path="platforms/android/cordova/node_modules/cordova-registry-mapper"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/cordova-registry-mapper/tests"/>
+	<classpathentry excluding="parsers/" kind="src" path="platforms/android/cordova/node_modules/elementtree/lib"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/elementtree/lib/parsers"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/elementtree/tests"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/glob"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/inflight"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/inherits"/>
+	<classpathentry excluding="chain/|number/|collection/|math/|utility/|string/|object/|function/|lang/|internal/|date/|array/" kind="src" path="platforms/android/cordova/node_modules/lodash"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/array"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/chain"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/collection"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/date"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/function"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/internal"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/lang"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/math"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/number"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/object"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/string"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/lodash/utility"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/minimatch"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/nopt/bin"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/nopt/examples"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/nopt/lib"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/nopt/test"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/once"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/os-homedir"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/os-tmpdir"/>
+	<classpathentry excluding="test/" kind="src" path="platforms/android/cordova/node_modules/osenv"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/osenv/test"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/path-is-absolute"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/plist/dist"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/plist/lib"/>
+	<classpathentry excluding="test/" kind="src" path="platforms/android/cordova/node_modules/properties-parser"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/properties-parser/test"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/q"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/sax/examples"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/sax/lib"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/sax/test"/>
+	<classpathentry excluding="test/" kind="src" path="platforms/android/cordova/node_modules/semver"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/semver/test"/>
+	<classpathentry excluding="src/|scripts/" kind="src" path="platforms/android/cordova/node_modules/shelljs"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/shelljs/scripts"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/shelljs/src"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/underscore"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/unorm/lib"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/util-deprecate"/>
+	<classpathentry excluding="test/" kind="src" path="platforms/android/cordova/node_modules/wrappy"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/wrappy/test"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/xmlbuilder/lib"/>
+	<classpathentry kind="src" path="platforms/android/cordova/node_modules/xmldom"/>
+	<classpathentry excluding="cordova-js-src/|cordova-js-src/plugin/android/|cordova-js-src/android/" kind="src" path="platforms/android/platform_www"/>
+	<classpathentry excluding="plugin/android/|android/" kind="src" path="platforms/android/platform_www/cordova-js-src"/>
+	<classpathentry kind="src" path="platforms/android/platform_www/cordova-js-src/android"/>
+	<classpathentry kind="src" path="platforms/android/platform_www/cordova-js-src/plugin/android"/>
+	<classpathentry kind="src" path="www/js"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

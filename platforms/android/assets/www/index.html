@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+
+       
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self'; media-src *">  -->
+       	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script> 
+		<script type="text/javascript" src="js/index.js"></script>  
+		<script type="text/javascript" src="cordova.js"></script>  
+		<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+      
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <title>Hello World</title>
+    </head>
+    <body>
+    
+    <li class="table-view-cell media">
+  <a hre="#" class="push-right add-location-btn">
+      <span class="media-object pull-left"></span>
+      <div class="media-body">
+          Add location
+      </div>
+  </a>
+</li>
+    
+    
+        <span id='result'></span>
+       	<p id="geolocation">Finding geolocation...</p>
+   		<script type="text/javascript" charset="utf-8">
+   	  // onSuccess Callback
+   	    // This method accepts a Position object, which contains the
+   	    // current GPS coordinates
+   	    //
+   	    var onSuccess = function(position) {
+   	        alert('Latitude: '          + position.coords.latitude          + '\n' +
+   	              'Longitude: '         + position.coords.longitude         + '\n' +
+   	              'Altitude: '          + position.coords.altitude          + '\n' +
+   	              'Accuracy: '          + position.coords.accuracy          + '\n' +
+   	              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+   	              'Heading: '           + position.coords.heading           + '\n' +
+   	              'Speed: '             + position.coords.speed             + '\n' +
+   	              'Timestamp: '         + position.timestamp                + '\n');
+   	    };
+
+   	    // onError Callback receives a PositionError object
+   	    //
+   	    function onError(error) {
+   	        alert('code: '    + error.code    + '\n' +
+   	              'message: ' + error.message + '\n');
+   	    }
+
+
+		if(detectmob()){
+	    	document.addEventListener("deviceready", onDeviceReady, false);
+		}else{
+	   	    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:true,maximumAge:Infinity, timeout:60000});
+		}
+   	    //navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:false,maximumAge:Infinity, timeout:60000});
+
+	    function onDeviceReady() {
+	        alert("navigator.geolocation works well");
+	   	    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:true,maximumAge:Infinity, timeout:60000});
+		    
+	    }
+	    
+	    function detectmob() { 
+	    	 if( navigator.userAgent.match(/Android/i)
+	    	 || navigator.userAgent.match(/webOS/i)
+	    	 || navigator.userAgent.match(/iPhone/i)
+	    	 || navigator.userAgent.match(/iPad/i)
+	    	 || navigator.userAgent.match(/iPod/i)
+	    	 || navigator.userAgent.match(/BlackBerry/i)
+	    	 || navigator.userAgent.match(/Windows Phone/i)
+	    	 ){
+	    	    return true;
+	    	  }
+	    	 else {
+	    	    return false;
+	    	  }
+    	}
+		
+		//navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+		/*document.addEventListener("app.deviceready", function(){
+			$('#geolocation').text('device is ready');
+    		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+		}, true);*/
+
+
+			
+
+
+
+			
+
+		
+			/*var url = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='paris')&format=json&callback=getResult";
+		    $.ajax({
+		
+		        url : url,
+		    });
+
+		  	var getResult = function(data) {
+			  	if(data.error){
+				  $('#result').text("erreur :(" + data.error.description);
+			 	};
+			 	var result = data.query.results;
+		    	var wind = data.query.results.channel.wind;
+		    	console.log(wind.chill);
+		  	};*/
+		
+		</script>
+
+    </body>
+</html>
