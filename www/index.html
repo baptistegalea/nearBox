@@ -33,7 +33,8 @@
         <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self'; media-src *">  -->
        	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script> 
 		<script type="text/javascript" src="js/index.js"></script>  
-		<script type="text/javascript" src="cordova.js"></script>  
+		<script type="text/javascript" src="js/weather.js"></script>  
+		<script type="text/javascript" src="js/appli.js"></script>  
 		<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
       
         <meta name="format-detection" content="telephone=no">
@@ -42,85 +43,25 @@
         <title>Hello World</title>
     </head>
     <body>
-    
-    <li class="table-view-cell media">
-  <a hre="#" class="push-right add-location-btn">
-      <span class="media-object pull-left"></span>
-      <div class="media-body">
-          Add location
-      </div>
-  </a>
-</li>
-    
-    
-        <span id='result'></span>
-       	<p id="geolocation">Finding geolocation...</p>
-   		<script type="text/javascript" charset="utf-8">
-   	  // onSuccess Callback
-   	    // This method accepts a Position object, which contains the
-   	    // current GPS coordinates
-   	    //
-   	    var onSuccess = function(position) {
-   	        $('#geolocation').text('Latitude: '          + position.coords.latitude          + '\n' +
-   	              'Longitude: '         + position.coords.longitude         + '\n' +
-   	              'Altitude: '          + position.coords.altitude          + '\n' +
-   	              'Accuracy: '          + position.coords.accuracy          + '\n' +
-   	              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-   	              'Heading: '           + position.coords.heading           + '\n' +
-   	              'Speed: '             + position.coords.speed             + '\n' +
-   	              'Timestamp: '         + position.timestamp                + '\n');
-   	    };
+    	<p id="error"></p>
+        <p id="result"></p>
+        <script type="text/javascript" charset="utf-8">
+    		var weather = new WeatherClass();
 
-   	    // onError Callback receives a PositionError object
-   	    //
-   	    function onError(error) {
-   	        alert('code: '    + error.code    + '\n' +
-   	              'message: ' + error.message + '\n');
-   	    }
+	   		// si nous sommes sur mobile
+			if(detectmob()){
+		    	document.addEventListener("deviceready", onDeviceReady, false);
+			}else{ //sinon, si nous sommes sur un navigateur (environnement de test)
+		   	    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:false,maximumAge:Infinity, timeout:60000});
+			}
+        	
+        	var locationData = getLocationData();
+        	
+        	weather.setLocation(locationData);
 
-
-		if(detectmob()){
-	    	document.addEventListener("deviceready", onDeviceReady, false);
-		}else{
-	   	    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:false,maximumAge:Infinity, timeout:60000});
-		}
-   	    //navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:false,maximumAge:Infinity, timeout:60000});
-
-	    function onDeviceReady() {
-	        alert("navigator.geolocation works well");
-	   	    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:true,maximumAge:Infinity, timeout:60000});
-		    
-	    }
-	    
-	    function detectmob() { 
-	    	 if( navigator.userAgent.match(/Android/i)
-	    	 || navigator.userAgent.match(/webOS/i)
-	    	 || navigator.userAgent.match(/iPhone/i)
-	    	 || navigator.userAgent.match(/iPad/i)
-	    	 || navigator.userAgent.match(/iPod/i)
-	    	 || navigator.userAgent.match(/BlackBerry/i)
-	    	 || navigator.userAgent.match(/Windows Phone/i)
-	    	 ){
-	    	    return true;
-	    	  }
-	    	 else {
-	    	    return false;
-	    	  }
-    	}
-		
-		//navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
-		/*document.addEventListener("app.deviceready", function(){
-			$('#geolocation').text('device is ready');
-    		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
-		}, true);*/
-
-
-			
-
-
-
-			
-
+        	
+        	console.log(locationData.results.);
+	
 		
 			/*var url = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='paris')&format=json&callback=getResult";
 		    $.ajax({
@@ -138,6 +79,5 @@
 		  	};*/
 		
 		</script>
-
     </body>
 </html>

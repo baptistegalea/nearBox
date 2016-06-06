@@ -61,7 +61,7 @@
    	    // current GPS coordinates
    	    //
    	    var onSuccess = function(position) {
-   	        alert('Latitude: '          + position.coords.latitude          + '\n' +
+   	        $('#geolocation').text('Latitude: '          + position.coords.latitude          + '\n' +
    	              'Longitude: '         + position.coords.longitude         + '\n' +
    	              'Altitude: '          + position.coords.altitude          + '\n' +
    	              'Accuracy: '          + position.coords.accuracy          + '\n' +
@@ -82,7 +82,7 @@
 		if(detectmob()){
 	    	document.addEventListener("deviceready", onDeviceReady, false);
 		}else{
-	   	    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:true,maximumAge:Infinity, timeout:60000});
+	   	    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:false,maximumAge:Infinity, timeout:60000});
 		}
    	    //navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:false,maximumAge:Infinity, timeout:60000});
 
