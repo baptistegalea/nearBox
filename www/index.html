@@ -31,10 +31,7 @@
 
        
         <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self'; media-src *">  -->
-       	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script> 
-		<script type="text/javascript" src="js/index.js"></script>  
-		<script type="text/javascript" src="js/weather.js"></script>  
-		<script type="text/javascript" src="js/appli.js"></script>  
+
 		<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
       
         <meta name="format-detection" content="telephone=no">
@@ -43,25 +40,26 @@
         <title>Hello World</title>
     </head>
     <body>
+    		<script type="text/javascript" src="js/index.js"></script>  
+		<script type="text/javascript" src="js/weather.js"></script>  
+		<script type="text/javascript" src="js/appli.js"></script>
+		<script src="cordova.js"></script>
     	<p id="error"></p>
-        <p id="result"></p>
+        <p id="result">Recherche de votre position en cours...</p>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script> 
+        
         <script type="text/javascript" charset="utf-8">
-    		var weather = new WeatherClass();
-
+        //app.initialize();
+	        var weather = new WeatherClass();
+	
 	   		// si nous sommes sur mobile
 			if(detectmob()){
 		    	document.addEventListener("deviceready", onDeviceReady, false);
 			}else{ //sinon, si nous sommes sur un navigateur (environnement de test)
 		   	    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:false,maximumAge:Infinity, timeout:60000});
 			}
-        	
-        	var locationData = getLocationData();
-        	
-        	weather.setLocation(locationData);
 
-        	
-        	console.log(locationData.results.);
-	
+	   		
 		
 			/*var url = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='paris')&format=json&callback=getResult";
 		    $.ajax({
@@ -77,7 +75,16 @@
 		    	var wind = data.query.results.channel.wind;
 		    	console.log(wind.chill);
 		  	};*/
-		
+		  	
+		  	
+		  	
+		  	
+		  	
+		  	
+		  	
+		  	
+		  	
+		  	
 		</script>
     </body>
 </html>

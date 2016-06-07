@@ -1,21 +1,32 @@
 var onSuccess = function(position) {
-    $('#result').text('Latitude: '          + position.coords.latitude          + '\n' +
+	//alert('ok');
+    /*$('#result').text('Latitude: '          + position.coords.latitude          + '\n' +
           'Longitude: '         + position.coords.longitude         + '\n' +
           'Altitude: '          + position.coords.altitude          + '\n' +
           'Accuracy: '          + position.coords.accuracy          + '\n' +
           'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
           'Heading: '           + position.coords.heading           + '\n' +
           'Speed: '             + position.coords.speed             + '\n' +
-          'Timestamp: '         + position.timestamp                + '\n');
-    
+          'Timestamp: '         + position.timestamp                + '\n');*/
+
+
     weather.setLatitude(position.coords.latitude);
     weather.setLongitude(position.coords.longitude);
+   	var locationData = getLocationData();
+ 
+   	weather.setLocation(locationData);
+
+
+   	document.getElementById('result').textContent = weather.getLocation().ville + ' - ' + weather.getLocation().departement + ' - ' + weather.getLocation().pays;
+
 };
 
 // onError Callback receives a PositionError object
 //
 function onError(error) {
-	$('#error')('code: '    + error.code    + '\n' +
+	//alert('error');
+
+	alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
 }
    	    
@@ -36,18 +47,26 @@ function detectmob() {
 }
 	    
 function getLocationData(){
+	var longitude = weather.getLongitude();
+	var latitude = weather.getLatitude();
 	var result = $.ajax({
-        contentType: "application/json; charset=utf-8",
-					url : 'http://maps.googleapis.com/maps/api/geocode/json?latlng=45.7698616666666,4.8591633333&sensor=true',       
-					//data: 'data= ' + $getValue.value,
-					
-					type : 'post',
+					url : 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + ',' + longitude + '&sensor=true',       
+					type : 'POST',
 				    async:false,
 					dataType : 'json', 
 				}).responseText;
+	result = JSON.parse(result);
+	
+	var pays = result.results[0].address_components[5].long_name;
+	var ville = result.results[0].address_components[2].long_name;
+	var departement = result.results[0].address_components[3].long_name;
+		
+	result = {'pays' : pays, 'ville' : ville, 'departement': departement};
+	
 	return result;
 }  
 
 function onDeviceReady() {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:true,maximumAge:Infinity, timeout:60000}); 
+	//alert('ready');
+    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:true,maximumAge:Infinity, timeout:15000}); 
 }
