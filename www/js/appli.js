@@ -1,5 +1,5 @@
 var onSuccess = function(position) {
-	//alert('ok');
+	//alert('geoloc success');
     /*$('#result').text('Latitude: '          + position.coords.latitude          + '\n' +
           'Longitude: '         + position.coords.longitude         + '\n' +
           'Altitude: '          + position.coords.altitude          + '\n' +
@@ -17,12 +17,42 @@ var onSuccess = function(position) {
    	weather.setLocation(locationData);
 
 
-   	document.getElementById('result').textContent = weather.getLocation().ville + ' - ' + weather.getLocation().departement + ' - ' + weather.getLocation().pays;
+   	document.getElementById('location').textContent = weather.getLocation().ville + ' - ' + weather.getLocation().departement + ' - ' + weather.getLocation().pays;
+   	
+   	
+
+   	ajaxWeather(weather.getLocation().ville)
+
 
 };
 
-// onError Callback receives a PositionError object
-//
+function ajaxWeather(texte){
+	var url = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + texte + "')&format=json&callback=getResult";
+    $.ajax({
+       url : url
+    });
+}
+
+function getResult(data){
+	  if(data.error){
+		$('#error').text("erreur :(" + data.error.description);
+		return;
+	  }
+	  var result = data.query.results.channel;
+	 // var wind = data.query.results.channel.wind;
+	   
+	  weather.setWeatherData(result);
+	  displayWeather();
+}
+
+
+function displayWeather(){
+	var description = weather.getWeatherData().item.condition.text;
+	var temperature = weather.getWeatherData().item.condition.temp;
+	temperature = getCelsiusFromFar(temperature) + '°C';
+	$("#now").css('display', 'block');
+	$("#meteoActuelle").text(description + '. ' + temperature);
+}
 function onError(error) {
 	//alert('error');
 
@@ -67,6 +97,15 @@ function getLocationData(){
 }  
 
 function onDeviceReady() {
-	//alert('ready');
-    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:true,maximumAge:Infinity, timeout:15000}); 
+    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:true,maximumAge:Infinity, timeout:60000});
+
+}
+
+function getCelsiusFromFar(temp){
+	return Math.round((temp-32)/1.8);
+}
+
+function refreshAllData(){
+	$('#location').text('Recherche de votre position en cours...');
+    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:false,maximumAge:Infinity, timeout:60000});
 }

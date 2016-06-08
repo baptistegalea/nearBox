@@ -19,72 +19,101 @@
 -->
 <html>
     <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-
-       
-        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self'; media-src *">  -->
-
-		<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
-      
+   		<meta charset="utf-8">
+		<meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'">
+     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>       
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <title>Hello World</title>
+        
+
+        <title>Weather Epsi</title>
     </head>
     <body>
-    		<script type="text/javascript" src="js/index.js"></script>  
+    
+    	<script type="text/javascript" src="js/index.js"></script>  
 		<script type="text/javascript" src="js/weather.js"></script>  
 		<script type="text/javascript" src="js/appli.js"></script>
 		<script src="cordova.js"></script>
+        <p><h2>Météo</h2></p><br /><br />
+        
     	<p id="error"></p>
-        <p id="result">Recherche de votre position en cours...</p>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script> 
+    	<button onclick="javascript:refreshAllData();" type="button" class="btn btn-default">  
+    		<span class="glyphicon glyphicon-map-marker"></span>
+   		</button>
+
+        <span id="location">Recherche de votre position en cours...</span> 	    
+	    <a onclick="javascript:displayGoogleSearch()">Choisir une autre ville</a>
+	    <input style="display: none;" id="autocomplete" placeholder="Entrer une adresse" type="text"></input>
+	    <br /><br />
+        
+
+        <p id="now" style="display: none;">Actuellement...<br /><span id="meteoActuelle"></span></p>
+        
+
+        
         
         <script type="text/javascript" charset="utf-8">
         //app.initialize();
+        $('#autocomplete').on( "focusout", function(){$('#autocomplete').css('display', 'none');} )
+        
+        function displayGoogleSearch(){
+        	$('#autocomplete').css('display', 'block');
+        	$('#autocomplete').focus();
+        }
 	        var weather = new WeatherClass();
 	
 	   		// si nous sommes sur mobile
 			if(detectmob()){
 		    	document.addEventListener("deviceready", onDeviceReady, false);
 			}else{ //sinon, si nous sommes sur un navigateur (environnement de test)
-		   	    navigator.geolocation.getCurrentPosition(onSuccess, onError,   {enableHighAccuracy:false,maximumAge:Infinity, timeout:60000});
+				refreshAllData();
+			}
+	   		
+	   		
+			function initAutocomplete() {
+				  // Create the autocomplete object, restricting the search to geographical
+				  // location types.
+				  autocomplete = new google.maps.places.Autocomplete(
+				      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+				      {types: ['geocode']});
+
+				  // When the user selects an address from the dropdown, populate the address
+				  // fields in the form.
+				  autocomplete.addListener('place_changed', fillInAddress);
 			}
 
-	   		
-		
-			/*var url = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='paris')&format=json&callback=getResult";
-		    $.ajax({
-		
-		        url : url,
-		    });
 
-		  	var getResult = function(data) {
-			  	if(data.error){
-				  $('#result').text("erreur :(" + data.error.description);
-			 	};
-			 	var result = data.query.results;
-		    	var wind = data.query.results.channel.wind;
-		    	console.log(wind.chill);
-		  	};*/
-		  	
-		  	
-		  	
-		  	
-		  	
-		  	
-		  	
-		  	
-		  	
-		  	
+			function fillInAddress(){
+			   	document.getElementById('location').textContent = autocomplete.getPlace().formatted_address;
+			   	ajaxWeather(autocomplete.getPlace().formatted_address);
+	        	$('#autocomplete').css('display', 'none');
+
+			}
+			
+			function geolocate() {
+				  if (navigator.geolocation) {
+				    navigator.geolocation.getCurrentPosition(function(position) {
+				      var geolocation = {
+				        lat: position.coords.latitude,
+				        lng: position.coords.longitude
+				      };
+				      var circle = new google.maps.Circle({
+				        center: geolocation,
+				        radius: position.coords.accuracy
+				      });
+				      //autocomplete.setBounds(circle.getBounds());
+				    });
+				  }
+				}
 		</script>
+		
+		            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOV-HtBq9qkvW0gJKEuvHuqtYLsQCm3AI&signed_in=true&libraries=places&callback=initAutocomplete" async defer></script>
+        
+		            
+		
     </body>
 </html>
